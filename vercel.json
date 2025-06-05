@@ -1,5 +1,19 @@
 {
   "version": 2,
+  "functions": {
+    "api/seed-data.js": {
+      "memory": 1024
+    },
+    "api/items/*.js": {
+      "memory": 1024
+    },
+    "api/villas/*.js": {
+      "memory": 1024
+    },
+    "api/villas/*/*.js": {
+      "memory": 1024
+    }
+  },
   "builds": [
     {
       "src": "frontend/package.json",

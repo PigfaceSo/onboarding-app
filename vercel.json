@@ -14,12 +14,6 @@
       "memory": 1024
     }
   },
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
       "src": "/api/(.*)",

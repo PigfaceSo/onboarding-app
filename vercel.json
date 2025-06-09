@@ -1,23 +1,21 @@
 {
   "version": 2,
-  "functions": {
-    "api/seed-data.js": {
-      "memory": 1024
-    },
-    "api/items/*.js": {
-      "memory": 1024
-    },
-    "api/villas/*.js": {
-      "memory": 1024
-    },
-    "api/villas/*/*.js": {
-      "memory": 1024
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    }
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    },
+    { "src": "api/seed-data.js", "use": "@vercel/node" },
+    { "src": "api/items/*.js", "use": "@vercel/node" },
+    { "src": "api/villas/*.js", "use": "@vercel/node" },
+    { "src": "api/villas/*/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/static/(.*)", "dest": "/frontend/build/static/$1" },
+    { "src": "/manifest.json", "dest": "/frontend/build/manifest.json" },
+    { "src": "/favicon.ico", "dest": "/frontend/build/favicon.ico" },
+    { "src": "/(.*)", "dest": "/frontend/build/index.html" }
   ]
 }

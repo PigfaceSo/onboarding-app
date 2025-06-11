@@ -4,8 +4,13 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
   operatorsAliases: 0, // 0 instead of false for Sequelize v6+
-
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -51,7 +56,7 @@ db.villa.hasMany(db.villaChecklistItem, { foreignKey: 'villa_id', as: 'checklist
 db.villaChecklistItem.belongsTo(db.villa, { foreignKey: 'villa_id', as: 'villa' });
 
 // Item - VillaChecklistItem associations (Item already exists)
-db.items.hasMany(db.villaChecklistItem, { foreignKey: 'item_id', as: 'villaChecklistEntries'});
+db.items.hasMany(db.villaChecklistItem, { foreignKey: 'item_id', as: 'villaChecklistEntries' });
 db.villaChecklistItem.belongsTo(db.items, { foreignKey: 'item_id', as: 'item' });
 
 // Villa - VillaDocument associations

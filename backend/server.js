@@ -6,9 +6,9 @@ const app = express();
 
 // CORS configuration - adjust origin as needed for your frontend
 var corsOptions = {
-  origin: "http://localhost:3000" // Default React dev server port
+  origin: "https://onboarding-app-frontend.onrender.com:3000" // Default React dev server port
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Parse requests of content-type - application/json
 app.use(express.json());
